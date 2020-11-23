@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./static/js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>
+        <!-- 此处通过v-model和v-bind实现数据的实时绑定 -->
+        <input v-model="parentMsg">
+        <br>
+        <!-- 通过父组件将parentMsg的内容分给其全局子组件 -->
+        <child v-bind:message="parentMsg"></child>
+    </div>
+</div>
+
+<script>
+    // 注册
+    Vue.component('child', {
+        // 声明 props
+        props: ['message'],
+        // 同样也可以在 vm 实例中像 "this.message" 这样使用
+        template: '<span>{{ message }}</span>'
+    })
+    // 创建根实例
+    new Vue({
+        el: '#app',
+        data: {
+            parentMsg: '父组件内容'
+        }
+    })
+</script>
+
+</body>
+</html>
+
+

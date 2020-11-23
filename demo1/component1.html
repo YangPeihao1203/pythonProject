@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+    <script src="./static/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ol>
+            <!-- 这表明将todoq等着传递给子组件 -->
+            <todo-item v-for="item in sites" v-bind:todo1="item"></todo-item>
+        </ol>
+    </div>
+
+    <script>
+        Vue.component('todo-item', {
+            // 这表明,我们接收的组件的参数名称为todo1
+            props: ['todo1'],
+            template: '<li>{{ todo1.text }}</li>'
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                sites: [
+                    { text: 'Runoob' },
+                    { text: 'Google' },
+                    { text: 'Taobao' }
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>
